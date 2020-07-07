@@ -38,9 +38,9 @@
                         var email = new LiveValidation('email', {wait: 500});
                         email.add( Validate.Presence );
                         email.add( Validate.Email );
-                        // Make sure .olivet.edu is in the email address
-                        email.add( Validate.Inclusion, {within: ['@olivet.edu'], partialMatch: true });
-                            // TODO: Make unique livevalidation for olivet email
+                        // Make sure .example.com is in the email address
+                        email.add( Validate.Inclusion, {within: ['@example.com'], partialMatch: true });
+                            // TODO: Make unique livevalidation for institution email
                     </script>
                     </div>
                 </div>
@@ -379,8 +379,8 @@
                 alert("Please provide your last name.");
                 document.illrequest.last_name.focus();
                 return false;
-            } else if (!olivetecheck(document.illrequest.email.value)) {
-                alert("Please provide a valid Olivet E-mail Address");
+            } else if (!institutionCheck(document.illrequest.email.value)) {
+                alert("Please provide a valid Example E-mail Address");
                 document.illrequest.email.focus();
                 return false;
             } else if (document.illrequest.status.value == "") {
@@ -395,8 +395,8 @@
                 alert("Please specify the database that you were searching in when you found the article.\n\nIf you weren't in a database, please tell us the page from which you accessed this form.");
                 document.illrequest.date_needed.focus();
                 return false;
-            } else if (!olivetecheck(document.illrequest.email.value)) {
-                var answer = confirm("The InterLibrary Loan department strongly recommends that you use your Olivet email address.\nYou have entered a non-Olivet email address.\n\nAre you sure you still want to do this?");
+            } else if (!institutionCheck(document.illrequest.email.value)) {
+                var answer = confirm("The InterLibrary Loan department strongly recommends that you use your Example email address.\nYou have entered a non-Example email address.\n\nAre you sure you still want to do this?");
                 document.illrequest.email.focus();
                 return answer;
             }
@@ -434,9 +434,9 @@
             return true;
         }
 
-        function olivetecheck(str) {
+        function institutionCheck(str) {
             var splitStr = str.split("@");
-            if(splitStr.length != 2 || splitStr[1] != "olivet.edu")
+            if(splitStr.length != 2 || splitStr[1] != "example.com")
                 return false;
 
             return true;
